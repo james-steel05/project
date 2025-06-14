@@ -1,0 +1,186 @@
+{
+    "summary": {
+        "title": "Revolut-like Digital Banking App",
+        "owner": "James Steel",
+        "description": "Threat model for a Revolut-like fintech platform using OWASP Threat Dragon.",
+        "id": "1",
+        "version": "2.0",
+        "diagramType": "STRIDE"
+    },
+    "detail": {
+        "diagramJson": {
+            "nodes": [
+                {
+                    "id": "1",
+                    "name": "User Browser",
+                    "type": "Actor",
+                    "bounds": {
+                        "x": 20,
+                        "y": 20,
+                        "height": 60,
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "2",
+                    "name": "Web Application",
+                    "type": "Process",
+                    "bounds": {
+                        "x": 180,
+                        "y": 20,
+                        "height": 60,
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "3",
+                    "name": "API Gateway",
+                    "type": "Process",
+                    "bounds": {
+                        "x": 340,
+                        "y": 20,
+                        "height": 60,
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "4",
+                    "name": "Backend Services",
+                    "type": "Process",
+                    "bounds": {
+                        "x": 500,
+                        "y": 20,
+                        "height": 60,
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "5",
+                    "name": "Database",
+                    "type": "Store",
+                    "bounds": {
+                        "x": 660,
+                        "y": 20,
+                        "height": 60,
+                        "width": 100
+                    }
+                },
+                {
+                    "id": "6",
+                    "name": "External Payment Gateway",
+                    "type": "ExternalEntity",
+                    "bounds": {
+                        "x": 500,
+                        "y": 120,
+                        "height": 60,
+                        "width": 140
+                    }
+                }
+            ],
+            "flows": [
+                {
+                    "id": "f1",
+                    "name": "Login Request",
+                    "source": "1",
+                    "target": "2"
+                },
+                {
+                    "id": "f2",
+                    "name": "User Data Submission",
+                    "source": "2",
+                    "target": "3"
+                },
+                {
+                    "id": "f3",
+                    "name": "Validated API Call",
+                    "source": "3",
+                    "target": "4"
+                },
+                {
+                    "id": "f4",
+                    "name": "Data Access",
+                    "source": "4",
+                    "target": "5"
+                },
+                {
+                    "id": "f5",
+                    "name": "Payment Request",
+                    "source": "4",
+                    "target": "6"
+                }
+            ],
+            "boundaries": [
+                {
+                    "id": "b1",
+                    "name": "Web Trust Boundary",
+                    "bounds": {
+                        "x": 10,
+                        "y": 10,
+                        "height": 80,
+                        "width": 280
+                    }
+                },
+                {
+                    "id": "b2",
+                    "name": "Internal Trust Boundary",
+                    "bounds": {
+                        "x": 300,
+                        "y": 10,
+                        "height": 180,
+                        "width": 480
+                    }
+                }
+            ],
+            "threats": [
+                {
+                    "id": "t1",
+                    "title": "Spoofing User Identity",
+                    "description": "Attacker impersonates user using stolen credentials",
+                    "type": "Spoofing",
+                    "status": "Open",
+                    "target": "2"
+                },
+                {
+                    "id": "t2",
+                    "title": "Tampering with Payment Request",
+                    "description": "Manipulation of request payload",
+                    "type": "Tampering",
+                    "status": "Open",
+                    "target": "3"
+                },
+                {
+                    "id": "t3",
+                    "title": "Information Disclosure via API",
+                    "description": "Sensitive data exposed via insecure API",
+                    "type": "Information Disclosure",
+                    "status": "Open",
+                    "target": "3"
+                },
+                {
+                    "id": "t4",
+                    "title": "Denial of Service Attack",
+                    "description": "API overwhelmed by excessive traffic",
+                    "type": "Denial of Service",
+                    "status": "Open",
+                    "target": "3"
+                },
+                {
+                    "id": "t5",
+                    "title": "Privilege Escalation",
+                    "description": "User gains unauthorized admin access",
+                    "type": "Elevation of Privilege",
+                    "status": "Open",
+                    "target": "4"
+                },
+                {
+                    "id": "t6",
+                    "title": "Repudiation of Transaction",
+                    "description": "User denies submitting a transaction",
+                    "type": "Repudiation",
+                    "status": "Open",
+                    "target": "4"
+                }
+            ]
+        }
+    }
+}
