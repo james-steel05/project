@@ -1,0 +1,64 @@
+{
+    "summary": {
+        "title": "Revolut Web Application Threat Model",
+        "owner": "StellarPay Security Team",
+        "description": "STRIDE threat model for a digital banking platform similar to StellarPay using OWASP Threat Dragon.",
+        "contributors": [
+            "James Steel"
+        ],
+        "date": "2025-06-14",
+        "diagrams": [
+            {
+                "title": "Web App Threat Model",
+                "id": "1",
+                "diagramType": "STRIDE"
+            }
+        ]
+    },
+    "detail": {
+        "threats": [
+            {
+                "id": "T1",
+                "title": "Credential Spoofing",
+                "type": "Spoofing",
+                "description": "Impersonate user with stolen credentials",
+                "mitigation": "MFA, rate-limiting, IP blacklisting"
+            },
+            {
+                "id": "T2",
+                "title": "Tampered Payment Requests",
+                "type": "Tampering",
+                "description": "Modify payment data in transit",
+                "mitigation": "Data validation, TLS, signed payloads"
+            },
+            {
+                "id": "T3",
+                "title": "Repudiation of Transactions",
+                "type": "Repudiation",
+                "description": "Users deny initiating transactions",
+                "mitigation": "Audit logs, non-repudiation tokens"
+            },
+            {
+                "id": "T4",
+                "title": "Data Leakage via APIs",
+                "type": "Information Disclosure",
+                "description": "Sensitive data exposed through APIs",
+                "mitigation": "Access controls, encryption, masking"
+            },
+            {
+                "id": "T5",
+                "title": "DDoS via Public Endpoints",
+                "type": "Denial of Service",
+                "description": "Service disruption by excessive traffic",
+                "mitigation": "WAFs, rate-limiting, CAPTCHA"
+            },
+            {
+                "id": "T6",
+                "title": "Privilege Escalation via Broken Access Control",
+                "type": "Elevation of Privilege",
+                "description": "Gain admin access from user role",
+                "mitigation": "RBAC, access control testing"
+            }
+        ]
+    }
+}
